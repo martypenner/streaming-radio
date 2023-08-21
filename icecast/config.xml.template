@@ -1,0 +1,35 @@
+<icecast>
+  <location>The Universe</location>
+  <hostname>localhost</hostname>
+  <limits>
+    <clients>100</clients>
+    <sources>1</sources>
+  </limits>
+  <authentication>
+    <source-password>${ROOT_SOURCE_PASSWORD}</source-password>
+    <relay-password>${ROOT_RELAY_PASSWORD}</relay-password>
+    <admin-user>${ADMIN_USER}</admin-user>
+    <admin-password>${ADMIN_PASSWORD}</admin-password>
+  </authentication>
+  <listen-socket>
+    <port>8000</port>
+  </listen-socket>
+  <mount>
+    <mount-name>/stream</mount-name>
+    <username>${MOUNT_USER}</username>
+    <password>${MOUNT_PASSWORD}</password>
+    <max-listeners>100</max-listeners>
+    <max-bitrate>192</max-bitrate>
+    <stream-name>DJ BroadBanned</stream-name>
+    <stream-description>music for your earholes</stream-description>
+    <genre>Music</genre>
+    <type>audio/mpeg</type>
+  </mount>
+  <fileserve>1</fileserve>
+  <security>
+    <changeowner>
+      <user>icecast-user</user>
+      <group>icecast</group>
+    </changeowner>
+  </security>
+</icecast>
