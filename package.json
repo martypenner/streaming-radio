@@ -13,7 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"deploy": "concurrently 'railway up -s player' 'cd icecast && railway up -s icecast'"
+		"deploy": "railway up -s radio"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -21,7 +21,6 @@
 		"@sveltejs/kit": "^1.20.4",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
-		"concurrently": "^8.2.1",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",

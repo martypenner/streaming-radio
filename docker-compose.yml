@@ -5,13 +5,6 @@ services:
     build: .
     ports:
       - '3000:3000'
-    env_file:
-      - .env
-  icecast:
-    build:
-      context: icecast
-      dockerfile: Dockerfile.icecast
-    ports:
       - '8000:8000'
     env_file:
-      - icecast/.env
+      - .env

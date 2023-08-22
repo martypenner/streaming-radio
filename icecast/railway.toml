@@ -1,6 +1,0 @@
-[build]
-builder = "dockerfile"
-dockerfilePath = "icecast/Dockerfile.icecast"
-
-[deploy]
-restartPolicyType = "on_failure"
