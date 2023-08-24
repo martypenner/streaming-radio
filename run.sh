@@ -12,4 +12,4 @@ ALL_PROXY=socks5://localhost:1055/ \
 	http_proxy=http://localhost:1055/ \
 	icecast2 -c config.xml &
 
-node build
+exec node build
