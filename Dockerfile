@@ -1,20 +1,21 @@
+# syntax=docker/dockerfile:1.4
+
 FROM node:18-bullseye
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TAILSCALED_TUN=userspace-networking
 
 WORKDIR /app
 
 RUN apt-get update && \
   # gettext is for envsubst
-  apt-get install -y icecast2 gettext mime-support netcat && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
-RUN curl -fsSL https://tailscale.com/install.sh | sh
+  apt-get install -y icecast2 gettext mime-support netcat \
+  && curl -fsSL https://tailscale.com/install.sh | sh \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m icecast-user
 COPY config.xml.template .
-COPY run.sh .
 RUN mkdir -p /usr/local/icecast/logs \
   && chown icecast-user:icecast-user /app /usr/local/icecast/logs \
   && chown -R icecast-user:icecast-user /usr/local/icecast/logs
