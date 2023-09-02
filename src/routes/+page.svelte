@@ -52,8 +52,6 @@
 	bind:paused
 	bind:volume
 	on:play={() => {
-		// Reset audio src to ensure we seek to the end.
-		src = getSrc();
 		retry = false;
 
 		// Seek to the end so no one gets left behind.
