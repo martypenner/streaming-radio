@@ -8,13 +8,13 @@
 	// This will trigger a new src on the audio element, causing to
 	// essentially retry loading and playing.
 	const resetSrc = () => {
-		src = getSrc();
+		src = makeSrc();
 	};
 
 	// Set the audio source to the proxied Icecast stream,
 	// with some extra cache-busting and a way to retry
 	// after errors.
-	const getSrc = () => {
+	const makeSrc = () => {
 		return `/stream?bust=${Date.now()}`;
 	};
 
@@ -25,7 +25,7 @@
 	let rawVolume = 55;
 	$: volume = logarithmicVolume(rawVolume);
 
-	let src = getSrc();
+	let src = makeSrc();
 	let retry = false;
 
 	type TimerId = ReturnType<typeof setTimeout>;
@@ -99,7 +99,13 @@
 							type="button"
 							class="play"
 							aria-label={paused ? 'play' : 'pause'}
-							on:click={() => (paused = !paused)}
+							on:click={() => {
+								paused = !paused;
+								if (!paused) {
+									// Reset the src to ensure we seek right to the end before we have a duration.
+									resetSrc();
+								}
+							}}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
